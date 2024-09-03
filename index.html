@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cosmosile</title>
+  <link rel="stylesheet" href="dist/styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="dist/script.js"></script>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="fixed flex justify-between py-6 w-full lg:px-48 md:px-12 px-4 content-center bg-secondary z-10">
+    <div class="flex items-center">
+      <img src='dist/assets/logo.svg' alt="Logo" class="h-4" />
+    </div>
+    <ul class="font-montserrat items-center hidden md:flex">
+      <li class="mx-3 ">
+        <a class="growing-underline" href="#">
+          Home
+        </a>
+      </li>
+      <li class="growing-underline mx-3">
+        <a href="#aboutus">About Us</a>
+      </li>
+      <li class="growing-underline mx-3">
+        <a href="#features">Features</a>
+      </li>
+      <li class="growing-underline mx-3">
+        <a href="#image">Image of the day</a>
+      </li>
+    </ul>
+    <div class="font-montserrat hidden md:block">
+      
+      <button class="py-2 px-4 text-white bg-black rounded-3xl">
+        Get Exploring
+      </button>
+    </div>
+    <div id="showMenu" class="md:hidden">
+      <i class="fa-solid fa-bars text-2xl"></i>
+    </div>
+  </nav>
+  <div id='mobileNav' class="hidden px-4 py-6 fixed top-0 left-0 h-full w-full bg-secondary z-20 animate-fade-in-down">
+    <div id="hideMenu" class="flex justify-end">
+      <i class="fa-solid fa-x h-16 w-16"></i>
+    </div>
+    <ul class="font-montserrat flex flex-col mx-8 my-24 items-center text-3xl">
+      <li class="my-6">
+        <a href="#">Home</a>
+      </li>
+      <li class="my-6">
+        <a href="#aboutus">About</a>
+      </li>
+      <li class="growing-underline mx-3">
+        <a href="#features">Features</a>
+      </li>
+      <li class="my-6">
+        <a href="#image">image of the day</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Hero -->
+  <section
+    class="pt-24 md:mt-0 md:h-screen flex flex-col justify-center text-center md:text-left md:flex-row md:justify-between md:items-center lg:px-48 md:px-12 px-4 bg-secondary">
+    <div class="md:flex-1 md:mr-10">
+      <h1 class="font-pt-serif text-5xl font-bold mb-7">
+        Join
+        <span class="bg-left-bottom bg-no-repeat pb-2 bg-100%">
+          Cosmosile
+        </span>
+      </h1>
+      <p class="font-pt-serif font-normal mb-7">
+        Where Passion for the Universe Meets Community, Inspiring Curiosity and Discovery Among Space Enthusiasts of All Ages. Open to our local community.
+      </p>
+      <div class="font-montserrat">
+        <button class="bg-black px-6 py-4 rounded-lg border-2 border-black border-solid text-white mr-2 mb-2">
+          Explore the stars
+        </button>
+        <button class="px-6 py-4 border-2 border-black border-solid rounded-lg">
+          About Us
+        </button>
+      </div>
+    </div>
+    <div class="flex justify-around md:block mt-8 md:mt-0 md:flex-1">
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.21/build/spline-viewer.js" async></script>
+      <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.21/build/spline-viewer.js" async></script>
+<spline-viewer loading-anim-type="spinner-small-light" url="https://prod.spline.design/6kgMAxRpTGW57i7c/scene.splinecode"><img src="data:image/png;base64,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" alt="Spline preview" style="width: 100%; height: 100%;"/></spline-viewer>
+
+    </div>
+  </section>
+
+  <!-- Abous Us -->
+  <section class="bg-black text-white sectionSize" id="aboutus">
+    <div>
+      <h2 class="secondaryTitle bg-100%">About Us</h2>
+    </div>
+    <div class="flex flex-col md:flex-row">
+      <div class="flex-1 mx-8 flex flex-col items-center my-4">
+      <div class="flex-1 mx-8 flex flex-col items-center my-4">
+        <p class="text-center font-montserrat">
+          Cosmosile is not your ordinary club; it's a vibrant community where space lovers unite. Dive into the wonders of the universe, share your passion for astronomy, and connect with fellow enthusiasts. Explore other sections of our website to learn more about our events, resources, and how you can get involved!
+
+        </p>
+      </div>
+     
+  </section>
+<!-- Features -->
+<section class="sectionSize bg-secondary" id="features">
+  <div>
+    <h2 class="secondaryTitle bg-100%">Features</h2>
+  </div>
+  <div class="md:grid md:grid-cols-2 md:grid-rows-2 gap-6">
+
+    <div class="flex items-start font-montserrat my-6">
+      <a href="src/PlanetInfo/planet.html" class="flex items-start">
+        <i class="fa-solid fa-earth-americas h-7 text-2xl mr-4 mt-1"></i>
+        <div>
+          <h3 class="font-semibold text-2xl">Space Info</h3>
+          <p>
+            Embark on an exciting journey through the cosmos! Explore fascinating planets, uncover their unique characteristics, and learn about the mysteries that lie beyond our Earth. Whether you're a space enthusiast or a curious beginner, there's a universe of knowledge waiting for you.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="flex items-start font-montserrat my-6">
+      <a href="src/RocketLaunches/rocket.html" class="flex items-start">
+        <i class="fa-solid fa-rocket h-7 text-2xl mr-4 mt-1"></i>
+        <div>
+          <h3 class="font-semibold text-2xl">Rocket Launches</h3>
+          <p>
+            Discover the power of human ingenuity through real-time rocket launches and the latest space missions. Follow groundbreaking space expeditions that push the boundaries of exploration.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="flex items-start font-montserrat my-6">
+      <a href="src/Gaze/gaze.html" class="flex items-start">
+        <i class="fa-solid fa-calendar-days h-7 text-2xl mr-4 mt-1"></i>
+        <div>
+          <h3 class="font-semibold text-2xl">Space Events</h3>
+          <p>
+            Stay updated on upcoming celestial events and local astronomy gatherings that ignite your passion for space. Participate in engaging discussions, hands-on activities, and expert-led sessions.
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <div class="flex items-start font-montserrat my-6">
+      <a href="src/SpaceNews/news.html" class="flex items-start">
+        <i class="fa-solid fa-newspaper h-7 text-2xl mr-4 mt-1"></i>
+        <div>
+          <h3 class="font-semibold text-2xl">Space News</h3>
+          <p>
+            Get the latest updates on space exploration, technology, and discoveries. Stay informed with news from NASA and other space agencies around the world.
+          </p>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+ 
+  <section id="image"
+  class=" font-montserrat pt-24 md:mt-0 md:h-screen flex flex-col justify-center text-center md:text-left md:flex-row md:justify-between md:items-center lg:px-48 md:px-12 px-4 bg-secondary bg-black text-white sectionSize">
+  <div id="nasa-image-container" class="flex flex-col justify-around md:block mt-8 md:mt-0 md:flex-1">
+    <img id="nasa-image" src="" alt="NASA Astronomy Picture of the Day" class="w-full h-64 object-cover rounded-lg shadow-lg mb-4">
+  </div>
+  <div class="md:flex-1 md:ml-10">
+    <h1 id="nasa-title" class="font-montserrat text-3xl font-bold mb-4">
+      <!-- NASA APOD title will be inserted here -->
+    </h1>
+    <p id="nasa-description" class="font-montserrat font-normal mb-4 text-sm h-32 overflow-y-auto">
+      <!-- NASA APOD description will be inserted here -->
+    </p>
+    <a id="learn-more" href="" class="text-blue-500 underline" target="_blank">
+      Learn More
+    </a>
+  </div>
+</section>
+
+<script>
+  async function fetchNASAAPOD() {
+    const API_KEY = 'hPMDXfQykh4DKfeHNFDz7zejco621qW9Pov7wfPk'; // Replace with your actual NASA API key
+    const API_URL = `https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`;
+
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+
+      // Update the HTML with the fetched data
+      document.getElementById('nasa-image').src = data.url;
+      document.getElementById('nasa-title').textContent = data.title;
+      
+      // Truncate the description to 200 characters
+      const truncatedDescription = data.explanation.length > 200 
+        ? data.explanation.substring(0, 200) + '...' 
+        : data.explanation;
+      document.getElementById('nasa-description').textContent = truncatedDescription;
+
+      // Set the Learn More link to the APOD page
+      document.getElementById('learn-more').href = 'https://apod.nasa.gov/apod';
+
+      // If the media type is video, replace img with iframe
+      if (data.media_type === 'video') {
+        const videoElement = document.createElement('iframe');
+        videoElement.src = data.url;
+        videoElement.className = 'w-full h-64 rounded-lg shadow-lg mb-4';
+        videoElement.allowFullscreen = true;
+        document.getElementById('nasa-image').replaceWith(videoElement);
+      }
+    } catch (error) {
+      console.error('Error fetching NASA APOD:', error);
+    }
+  }
+
+  // Call the function when the page loads
+  window.onload = fetchNASAAPOD;
+</script>
+  <!-- FAQ  -->
+  <section class="sectionSize items-start pt-8 md:pt-36 bg-secondary text-black">
+    <div>
+      <h2 class="secondaryTitle  p-10 mb-0 bg-center bg-100%">
+        FAQ
+      </h2>
+    </div>
+
+    <div toggleElement class="w-full py-4">
+      <div class="flex justify-between items-center">
+        <div question class="font-montserrat font-medium mr-auto">
+          What is Cosmosile Space Club
+        </div>
+        <i class="fa-solid fa-circle-chevron-down transform transition-transform"></i>
+      </div>
+      <div answer class="font-montserrat text-sm font-extralight pb-8 hidden">
+        Cosmosile Space Club is a community for space enthusiasts of all ages. We offer events, workshops, and discussions that inspire curiosity and foster a deeper understanding of the universe.
+      </div>
+    </div>
+    <hr class="w-full bg-white" />
+
+    <div toggleElement class="w-full py-4">
+      <div class="flex justify-between items-center">
+        <div question class="font-montserrat font-medium mr-auto">
+          Are there any age restrictions for joining the local space club
+        </div>
+        <i class="fa-solid fa-circle-chevron-down transform transition-transform"></i>
+      </div>
+      <div answer class="font-montserrat text-sm font-extralight pb-8 hidden">
+        Most of our events are family-friendly and open to all ages. However, some specialized workshops may have specific age recommendations. Please refer to individual event descriptions for more information.
+      </div>
+    </div>
+    <hr class="w-full bg-white" />
+
+    <div toggleElement class="w-full py-4">
+      <div class="flex justify-between items-center">
+        <div question class="font-montserrat font-medium mr-auto">
+          Why space though ?
+        </div>
+        <i class="fa-solid fa-circle-chevron-down transform transition-transform"></i>
+      </div>
+      <div answer class="font-montserrat text-sm font-extralight pb-8 hidden">
+        space is not just about distant stars and planets; it’s about understanding our place in the universe, inspiring future generations, and pushing the boundaries of human knowledge and capability.
+      </div>
+    </div>
+    <hr class="w-full bg-white" />
+
+  </section>
+
+  <!-- Footer -->
+  <section class="bg-black sectionSize">
+    <div class="text-white font-montserrat text-sm">
+      © 2024 COSMOSILE. All rights reserved
+    </div>
+  </section>
+</body>
+
+</html>

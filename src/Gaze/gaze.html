@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Astronomy Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 24px;
+            max-width: 800px;
+            margin: 32px auto;
+        }
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            text-align: center;
+            color: #1f2937; /* Tailwind's text-gray-800 */
+        }
+        .widget {
+            background-color: #f3f4f6;
+            padding: 16px;
+            border-radius: 8px;
+        }
+        .instructions {
+            margin-top: 24px;
+        }
+        .instructions h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .instructions ol {
+            padding-left: 20px;
+            color: #4b5563; /* Tailwind's text-gray-600 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="heading">Local Astronomy Events</h2>
+        <div id="nsn" class="widget">
+            <!-- The widget will be inserted here -->
+        </div>
+        <div class="instructions">
+            <h3>How to Use:</h3>
+            <ol>
+                <li>Enter your location in the widget above.</li>
+                <li>Browse through the list of upcoming astronomy events.</li>
+                <li>Click on an event for more details and registration information.</li>
+            </ol>
+        </div>
+    </div>
+    <script src="https://nightsky.jpl.nasa.gov/js/nsn_search_widget.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.nsn_search_widget) {
+                window.nsn_search_widget.init("nsn", {
+                    // No default values provided
+                });
+            }
+        });
+    </script>
+</body>
+</html>

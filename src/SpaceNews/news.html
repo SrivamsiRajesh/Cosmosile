@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmosile Space News</title>
+    <script src="../../dist/script.js"></script>
+    <link rel="stylesheet" href="../../dist/styles.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=PT+Serif:wght@400;700&display=swap");
+
+        body {
+           font-family: Montserrat,sans-serif;
+            background-color: #F4F2ED;
+        }
+
+        .news-card {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .truncate-3-lines {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <nav class="fixed flex justify-between py-6 w-full lg:px-48 md:px-12 px-4 content-center bg-secondary z-10">
+        <div class="flex items-center">
+          <img src='../../dist/assets/logo.svg' alt="Logo" class="h-4" />
+        </div>
+        <ul class="font-montserrat items-center hidden md:flex">
+          <li class="mx-3 ">
+            <a class="growing-underline" href="../../index.html">
+              Home
+            </a>
+          </li>
+          <li class="growing-underline mx-3">
+            <a href="../../index.html#aboutus">About Us</a>
+          </li>
+          <li class="growing-underline mx-3">
+            <a href="../../index.html#features">Features</a>
+          </li>
+          <li class="growing-underline mx-3">
+            <a href="../../index.html#image">Image of the day</a>
+          </li>
+        </ul>
+        <div class="font-montserrat hidden md:block">
+          
+          <button class="py-2 px-4 text-white bg-black rounded-3xl">
+            Get Exploring
+          </button>
+        </div>
+        <div id="showMenu" class="md:hidden">
+          <i class="fa-solid fa-bars text-2xl"></i>
+        </div>
+      </nav>
+      <div id='mobileNav' class="hidden px-4 py-6 fixed top-0 left-0 h-full w-full bg-secondary z-20 animate-fade-in-down">
+        <div id="hideMenu" class="flex justify-end">
+          <i class="fa-solid fa-x h-16 w-16"></i>
+        </div>
+        <ul class="font-montserrat flex flex-col mx-8 my-24 items-center text-3xl">
+          <li class="my-6">
+            <a href="../../index.html">Home</a>
+          </li>
+          <li class="my-6">
+            <a href="../../index.html#aboutus">About</a>
+          </li>
+          <li class="growing-underline mx-3">
+            <a href="../../index.html#features">Features</a>
+          </li>
+          <li class="my-6">
+            <a href="../../index.html#image">image of the day</a>
+          </li>
+        </ul>
+      </div>
+
+    <main class="container mx-auto px-4 py-8">
+        <section id="featured" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Featured Story</h2>
+            <div id="featured-story" class="bg-white rounded-lg shadow-md overflow-hidden">
+                <!-- Featured story content will be inserted here -->
+            </div>
+        </section>
+
+        <section id="latest-news">
+            <h2 class="text-2xl font-bold mb-4">Latest Space News</h2>
+            <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- News items will be inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-4 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Cosmosile Space News. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const API_KEY = '4b48cd7e763f3bdaebd072f57e455fbb'; // Replace with your actual GNews API key
+        const TOPIC = 'space OR astronomy OR NASA OR SpaceX';
+        const API_URL = `https://gnews.io/api/v4/search?q=${TOPIC}&token=${API_KEY}&lang=en&max=10`;
+
+        async function fetchNews() {
+            try {
+                const response = await axios.get(API_URL);
+                const articles = response.data.articles;
+                
+                // Update featured story
+                updateFeaturedStory(articles[0]);
+                
+                // Update latest news grid
+                updateNewsGrid(articles.slice(1));
+            } catch (error) {
+                console.error('Error fetching news:', error);
+            }
+        }
+
+        function updateFeaturedStory(article) {
+            const featuredStoryHTML = `
+                <img src="${article.image || 'https://via.placeholder.com/800x400'}" alt="${article.title}" class="w-full h-64 object-cover">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">${article.title}</h3>
+                    <p class="text-gray-700 mb-4">${article.description}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">${new Date(article.publishedAt).toLocaleDateString()}</span>
+                        <a href="${article.url}" target="_blank" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Read More</a>
+                    </div>
+                </div>
+            `;
+            document.getElementById('featured-story').innerHTML = featuredStoryHTML;
+        }
+
+        function updateNewsGrid(articles) {
+            const newsGridHTML = articles.map(article => `
+                <div class="news-card bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="${article.image || 'https://via.placeholder.com/400x200'}" alt="${article.title}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold mb-2">${article.title}</h3>
+                        <p class="text-gray-700 mb-4 truncate-3-lines">${article.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">${new Date(article.publishedAt).toLocaleDateString()}</span>
+                            <a href="${article.url}" target="_blank" class="text-blue-500 hover:underline">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('news-grid').innerHTML = newsGridHTML;
+        }
+
+        // Call the function when the page loads
+        window.onload = fetchNews;
+    </script>
+</body>
+</html>
